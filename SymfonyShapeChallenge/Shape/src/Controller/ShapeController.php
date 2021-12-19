@@ -2,19 +2,28 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Services\ShapeService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ShapeController extends AbstractController
 {
-    /**
-     * @Route("/shape", name="shape")
-     */
-    public function index(): Response
+    protected $shape;
+
+    public function __construct(ShapeService $shape)
     {
-        return $this->render('shape/index.html.twig', [
-            'controller_name' => 'ShapeController',
+        $this->shape = $shape;
+    }
+    /**
+     * @Route("/shape/list", name="list")
+     */
+    public function list(): Response
+    {
+        $shapes = $this->shape->all();
+
+        return $this->render('shape/list.xml.twig', [
+            'shapes' => $shapes,
         ]);
     }
 }
