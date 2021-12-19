@@ -32,6 +32,7 @@ After, execute:
 
 ```shell
 cd SymfonyShapeChallenge
+docker-compose build
 docker-compose up -d
 docker exec -it symfony_parcelaja bash -c 'composer install'
 docker exec -it symfony_parcelaja bash -c 'php bin/console doctrine:migrations:migrate'
