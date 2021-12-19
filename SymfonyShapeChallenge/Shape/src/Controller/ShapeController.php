@@ -6,15 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class ShapeController extends AbstractController
 {
     /**
-     * @Route("/shape", name="shape_list")
+     * @Route("/shape", name="shape")
      */
-
-    public function list()
+    public function index(): Response
     {
-        return uniqid();
+        return $this->render('shape/index.html.twig', [
+            'controller_name' => 'ShapeController',
+        ]);
     }
 }
