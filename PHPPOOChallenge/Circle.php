@@ -1,7 +1,4 @@
 <?php
-
-require __DIR__ .'/Shape.php';
-
 class Circle extends Shape
 {
     const TYPE = 3;
@@ -47,5 +44,10 @@ class Circle extends Shape
         $this->radius = $radius;
 
         return $this;
+    }
+
+    function __clone()
+    {
+        $this->generateId();
     }
 }
