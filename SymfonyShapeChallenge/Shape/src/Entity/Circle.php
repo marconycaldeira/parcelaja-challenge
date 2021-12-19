@@ -2,14 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\CircleRepository;
+use App\Entity\Shape;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CircleRepository;
 
 /**
  * @ORM\Entity(repositoryClass=CircleRepository::class)
  */
-class Circle
+class Circle extends Shape
 {
+    const TYPE = 1;
+
+    const TYPE_NAME = 'Circle';
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -54,5 +60,17 @@ class Circle
         $this->radius = $radius;
 
         return $this;
+    }
+
+    public function getArea(bool $format = false): float
+    {
+        $area = pi() * pow($this->getRadius(), 2);
+        
+        return $format ? number_format($area, 2, '.', '') : $area;
+    }
+
+    public function getDimensions()
+    {
+        return 'R: '.$this->getRadius();
     }
 }

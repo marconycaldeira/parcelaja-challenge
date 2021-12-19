@@ -8,8 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=RectangleRepository::class)
  */
-class Rectangle
+class Rectangle extends Shape
 {
+    const TYPE = 2;
+
+    const TYPE_NAME = 'Rectangle';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -71,5 +75,17 @@ class Rectangle
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getArea(bool $format = false): float
+    {
+        $area = $this->getWidth() * $this->getLength();
+
+        return $format ? number_format($area, 2, '.', '') : $area;
+    }
+
+    public function getDimensions()
+    {
+        return 'W: '.$this->getWidth().' L: '.$this->getLength();
     }
 }
