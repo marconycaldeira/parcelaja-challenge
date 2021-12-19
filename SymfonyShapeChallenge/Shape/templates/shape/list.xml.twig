@@ -1,0 +1,36 @@
+{% extends 'base.xml.twig' %}
+
+{% block title %}Hello ShapeController!{% endblock %}
+
+{% block body %}
+<style>
+    .wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .wrapper table tbody tr td { background-color: #dedede; padding: .5em; }
+    .wrapper table thead tr th { background-color: #ccc; padding: 1em; }
+</style>
+
+<div class="wrapper">
+    <h1>Shapes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Shape ID</th>
+                <th>Shape Type</th>
+                <th>Dimensions</th>
+                <th>Area</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shape in shapes %}
+            <tr>
+                <td>{{ shape.id }}</td>
+                <td>{{ shape.getTypeName() }}</td>
+                <td>{{ shape.getDimensions() }}</td>
+                <td>{{ shape.getArea(true)  }}</td>
+            </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
+</div>
+{% endblock %}
