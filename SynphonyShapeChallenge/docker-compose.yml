@@ -1,0 +1,30 @@
+version: "3"
+services:
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    links:
+      - fpm 
+    volumes:
+      - ./Shape:/var/www/shape
+      - ./docker/nginx/vhost.conf:/etc/nginx/conf.d/shape.conf
+    working_dir: /var/www/shape
+
+  fpm:
+    build: ./docker/php-fpm
+    volumes:
+      - ./Shape:/var/www/shape
+    working_dir: /var/www/shape
+
+  mysql:
+    image: mysql:5.7.29
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./.data:/var/lib/mysql
+    ports:
+      - 3306:3306
