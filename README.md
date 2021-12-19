@@ -41,4 +41,5 @@ docker exec -it symfony_parcelaja bash -c 'php ./vendor/bin/phpunit'
 ```
 
 To access in the browser, open the `http://parcelaja.local/shape/list`
+
 *Note.:* If this doesn't work, review the .env content and port definitions in docker-composer.yml
