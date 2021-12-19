@@ -1,8 +1,4 @@
 <?php
-
-require __DIR__ .'/Shape.php';
-
-
 class Rectangle extends Shape
 {
     const TYPE = 2;
